@@ -1,0 +1,91 @@
+ALJO-003-M
+http://10.50.21.3/classinfo.html
+http://10.50.20.250:8000/
+
+
+2	ALJO-003-M	2z8rNQk2noEIavT	10.50.37.87
+lin-ops  D password
+
+
+
+NOTES
+
+Penetration testing Overview
+    Testing a network for vulnerabilities
+  
+  
+  Cyber Kill Chain
+    Recon
+        can include:
+            scans, harvesting emails addresses,
+    Weaponization
+        Coupling exploit with backdoor into deliverable payload
+    Delivery
+        "Initial Access"
+        Delivering weaponized bundle to the victim
+    Exploitation
+        Exploiting a vulnerability to execute code on a victim's system
+    Installation
+        Installing malware on the asset
+    Command and control
+        Command channel for remote manipulation of victim
+    Actions on Objectives
+    
+    
+    Initial Access
+        What is now the most common method for gaining initial access?
+            Phishing!
+                Spear Phishing is phishing that targets a specific group
+                
+    Intro to Exploit Research
+        Transition from recon to weoponization
+        Leverage intel about network
+    Research
+        open source
+        Organizational Capabilities
+    Capabilities
+        Mission Objectives drive requirements
+            collection
+            effects
+        Additional functionality to fullfil req
+        Communications Security (COMSEC)
+    Testing
+        Exploit Development occurs from vulnerability pairing
+    Plan
+        Procure Hardware and software
+        Assign developer
+        Assign a tester to develop TTPs and break it
+        Document testing results
+        Testing environment
+
+
+
+
+
+    APT - Advanced Persistent Threats
+    Vulnerability - POTENTIAL weaknesses to a device or technology
+    THREAT - Known and usable vulnerabilities
+    
+    
+    
+    tunneling
+        ssh -M (multiplexing) -S (save scoket)
+
+            **** ssh -MS /tmp/jump student@10.50.37.87 (grey/jump) ****
+            ssh -S /tmp/jump dummy (using socket "saved connection")
+            ssh -S /tmp/jump -O forward -D 9050 dummy   (Turns on dynamic)
+            ssh -S /tmp/jump -O cancel -D 9050 dummy    (turns off dynamic)
+            ssh -S /tmp/jump -O forward -L1111:192.168.28.111:80 DUMB
+            ssh -S /tmp/jump -O forward -L2222:192.168.28.111:8080 DUMB
+            ssh -S /tmp/jump -O forward -L2222:192.168.28.111:3333 DUMB
+            ssh -MS /tmp/T1 root@127.0.0.1 -p3333
+            
+            
+            
+            
+    for i in {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &); done
+
+    sudo proxychains nmap -Pn -T4 -sT -p1-10000 192.168.28.111 2>/dev/null
+
+    sudo proxychains nmap -Pn -T4 -sT -p1-10000 192.168.28.111 --script http-enum.nse 2>/dev/null
+    sudo proxychains nmap -Pn -T4 -sT -p1-10000 192.168.28.111 --script http-enum.nse | smb-os-discovery.nse 2>/dev/null
