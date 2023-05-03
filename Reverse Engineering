@@ -1,0 +1,42 @@
+x86_64 Assembly
+    HEAP
+        Memory that can be allocated and deallocated
+    STACK
+        A contiguous section of memory used for passing arguments
+    GENERAL REGISTER
+        A multipurpose register that can be used by either programmer or user to store data or a memory location address
+    CONTROL REGISTER
+        A processor register that changes or controls the behavior of a CPU
+    FLAGS REGISTER
+        Contains the current state of the processor
+        
+    %ebp-0x8
+        32 bit
+    %r...
+        64 bit
+    -----------------------------
+    %rax
+        the first return register
+    %rbp
+        the base pointer that keeps track of the base of the stack
+    %rsp
+        the stack pointer that points to the top of the stack
+    ---------------------------------
+    
+    
+    JMP
+        Jump to area in memory
+    JLE
+        Jump if less than or equal
+    JZ
+        Jump if zero
+    JNZ
+        Jump if not zero
+    CMP
+        Compare and look for zero. If zero store in %RFLAGS
+    LEA 
+        Fancy mov
+    
+        
+    *******NEED TO HAVE A MAIN FUNCTION or you will have an error********
+    
