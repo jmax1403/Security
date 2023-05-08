@@ -1,0 +1,22 @@
+/etc/passwd contains users, group info, home directroy
+ ssh <user>@<host> | tee ###tee saves to a file and displays to a screen file goes after the tee
+ 
+ cat /etc/hosts on every box bruh
+ square bracket are kernel level dont worry
+ check for scripts. rsyslog are bad
+ dispersekey, norton, '''rkhunter''', windows defender
+ systemctl --type=service --no-pager
+cronjobs
+ls -latr /etc/cron*
+     /var/spool/at
+     /var/spool/crontab
+crontab -l
+if its named like a malware then look at it
+sudo -l
+        
+/etc/rsyslog.conf
+   crontab.guru
+   nc executable
+   
+   scp -o "ControlPath=/tmp/young" placeholder:/home/student/not_real.txt 
+   
