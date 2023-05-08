@@ -20,3 +20,45 @@ sudo -l
    
    scp -o "ControlPath=/tmp/young" placeholder:/home/student/not_real.txt 
    
+   
+   just got access --- test questions are named after hostname of machine it's for
+
+hostname && whoami
+ip a --- interfaces and IPs
+ping sweep ---- for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+cat /etc/hosts --- local dns file or resolution --- check on every box 
+ps -elf --- running processes, anything in square brackets are kernel level, there will not be any answers in there. **rsyslog** could be bad if we are attacking
+        look for scripts, chase that fucking script and read it, compare scripts runnin gto the ones on your opstatino to narrow it down. 
+        Anti-virus
+          Norton, McAffe, RKHunter, Windows Defender
+          ls -latr /etc --- all configured shit, LAST RESORT, latr is ordered by recent modification, so (better than -lisa)
+          ls -latr /var/log --- most recent logs at bottom
+          systemctl --type=service --no-pager      to find services fro anti-virus
+          ls -latr /etc/cron* --- look at all conr shit, compare to linops to find sussy stuff
+            ls -latr /var/spool/crontab    maybe
+            ls -latr /var/spool/at         maybe
+          all that shit fro anti-virus will let you find it
+dirs to always check use        ls -latr
+/tmp
+current user home, any homes you can access
+      find / -type d -name ".*" 2>/dev/null  --- all hidden dirs
+crontab -l        (only for current user)
+look for malware looking things -- stomp stomp
+sudo -l     see what I can sudo
+cat /etc/passwd        for user shit
+cat /etc/group         to see what groups in
+/etc/rsyslog.conf --- default rsyslog config file
+/etc/rsyslog.d/       to see more files with logging rules
+      50-default.conf
+grep -v "#" /etc/rsyslog.d/50-default.conf to get rid of comments and things not being logged
+anything not going to /var/log, it is abnormal, so look at it
+cat /etc/cron.d/popularity-contest
+crontab.guru website to decipher cron stuff
+weird crons are strange as well, look for flag form
+sudo tail -n20 /var/log/auth.log --- root and priv user logs
+tcpdump --- don't ask baout it, use your resources
+netcat needs +x to run
+any encoding is base64, use cyberchef
+scp over socket     scp -o "ControlPath=/tmp/<>" placeholder:/home/student/not_real.txt .           download
+                    scp -o "ControlPath=/tmp<>" placeholder:<file i'm uploading> user@host:/wherever/i/put/it   upload
+   
