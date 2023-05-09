@@ -1,0 +1,125 @@
+Establish and maintain Linux persistence by:
+    Adding or hijacking a user account
+    Implementing boot process persistence
+    Adding or modifying a CRON job
+    Adding a kernel module (with a backdoor)
+    
+    Lateral Privelege Escalation
+    SUDO is privelege escalation
+    
+Sudo cat can see /etc/shadow and see password
+
+SUDO GOTCHAS (BE CAREFUL)
+    Commands that can access the contents of other files
+    Commands that download files
+    Commands that execute other commands (i.e. editors)
+    Dangerous commands
+    
+    
+SUID/GUID
+    
+    
+    
+Insecure Permissions
+    CRON
+    World-Writable Files and Directories
+    Dot '.' in PATH
+    
+    
+    
+    
+Logs
+    auth.log/secure
+        Logins/authentications
+    lastlog
+        Each users' last successful login time
+    btmp
+        Bad login attempts
+    sulog
+       Usage of SU command
+    utmp
+        Currently logged in users (W command)
+    wtmp
+        Permanent record on user on/off
+        
+Working with Logs
+file /var/log/wtmp
+find /var/log -type f -mmin -10 2> /dev/null
+journalctl -f -u ssh
+journalctl -q SYSLOG_FACILITY=10 SYSLOG_FACILITY=4
+  
+
+
+
+Reading Files
+
+cat /var/log/auth.log | egrep -v "opened|closed"
+awk '/opened/' /var/log/auth.log
+last OR lastb OR lastlog
+strings OR dd            # for data files
+more /var/log/syslog
+head/tail      
+        
+        
+Precise Log Cleaning
+    egrep -v '10:49*| 15:15:15' auth.log > auth.log2; cat auth.log2 > auth.log; rm auth.log2
+    cat auth.log > auth.log2; sed -i 's/10.16.10.93/136.132.1.1/g' auth.log2; cat auth.log2 > auth.log
+
+
+Timestomp
+    touch -c -t 201603051015 1.txt   # Explicit
+    touch -r 3.txt 1.txt    # Reference
+    
+    
+    
+    
+Rsyslog
+    IS A CONCERN
+    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+DEMO
+++++++++++++++++++++++++++++++++++++++++
+Privelege Escalation (SUDO)
+
+Initial Access
+whoami && hostname
+sudo -l
+    To SEE if sudo is usable
+GTFOBins.github.io
+++++++++++++++++++++++++++++++++++++++++
+Privelege Escalation (SUID/GUID)
+
+find / -type f -perm /2000 2>/dev/null      #GUID
+find / -type f -perm /4000 2>/dev/null      #SUID
+find / -type f -perm /6000 2>/dev/null      #SUID AND GUID
+check each binary into gtfoBIN
+    look for GUID in vulnerabilities
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"Dot the Path"
+
+echo $PATH
+PATH=.:$PATH
+    echo $PATH
+vim ls
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Read Password w John the ripper
+
+initial ACCESS
+cat /etc/shadow
+Zeus=root
+
+If not already installed, Install JTR
+    sudo apt install john
+    
+mkdir crach && cd crach
+echo "(Interesting user)" > shadow.txt
+john --wordlist=passwords.txt shadow.txt
+RECORD THE PASSWORD IMMEDIATELY
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+sudo vim /etc/sudoers
+EXAMPLE ON LIN-OPS
+
+
