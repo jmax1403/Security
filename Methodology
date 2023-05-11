@@ -31,7 +31,29 @@ POSSIBLE UPLOAD (NEED AN UPLOAD[S] PAGE AND an ability to upload a file)
     UPLOAD malicious file
     REceived web shell
     Upload ssh-key IMMEDIATLEY
-    
+        ssh-keygen -t rsa
+            All defaults
+        cat id_rsa.pub
+        COPY THE WHOLE THING
+        web:   find out if account on web has .ssh file
+                      if not, mkdir /var/www/.ssh
+                      write our key into /var/www/.ssh
+        linops:   copy whole contents fo keygen
+                      web: echo "<key>" >> /var/www/.ssh/authorized_keys
+                      check web file
+    ###########YOUR USER IS www-data##################
+command injection
+    use ; to put in commands
+    oftern found on IP ping pages
+    can do the same steps in ssh-keygen n this line
+
+
+
+
+
+
+
+
 nmap -Pn -T4 -sT <IP> --script http-enum.nse
     /scripts/
 
@@ -129,6 +151,24 @@ If the give you a executable its exe replacement
     Replace it and restart the box
         MINIMUM 3 RESTARTS
 ---------------------------------------------------------------
+
+Buffer Overflow
+    Check notes
+    
+    
+    
+
+AUDIT POLICY on windows (need admin priv *priv esc*)
+auditpol /get/category:* | findstr /i "success failure"
+
+persistence on windows in run keys
+
+
+
+
+
+
+
 Also know   Reverse Engineering
             Exploit Developemnet
             Find command gtfobins
