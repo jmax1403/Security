@@ -27,7 +27,7 @@ Found File explorer
         ../../../../../....../etc/passwd
                 (Look for users you found from login page)
         
-POSSIBLE UPLOAD (NEED AN UPLOAD[S] PAGE AND an ability to upload a file)
+POSSIBLE UPLOAD (NEED AN /UPLOAD[S] PAGE AND an ability to upload a file)
     UPLOAD malicious file
     REceived web shell
     Upload ssh-key IMMEDIATLEY
